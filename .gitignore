@@ -32,6 +32,8 @@ out/
 .vscode/*
 !.vscode/extensions.json
 .history/
+.vite/
+.vite/*
 
 ############################
 # Spring / STS

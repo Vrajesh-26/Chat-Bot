@@ -2,7 +2,7 @@ import "./MessageBubble.css";
 const MessageBubble = ({ message }) => {
     return (
         <div className={
-            message.sender === "user" ? 
+            message.sender === "role" ? 
             "message user-message" :
             "message bot-message"    
         }>

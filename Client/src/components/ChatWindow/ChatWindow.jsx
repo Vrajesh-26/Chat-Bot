@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ChatFooter from "../ChatFooter/ChatFooter";
 import ChatHeader from "../ChatHeader/ChatHeader";
 import MessageList from "../MessageList/MessageList"
@@ -5,6 +6,11 @@ import "./ChatWindow.css";
 
 const ChatWindow = () => {
     
+    const [chatHistory, setChatHistory] = useState([{
+            role: "bot",
+            text: "Hello! How can I help you?"
+        }]);
+
     const messages = [
         {
             id: 1,
@@ -22,9 +28,9 @@ const ChatWindow = () => {
         <div className="chat-window">
             <ChatHeader />
             <div className="message-body">
-                <MessageList messages= {messages}/>
+                <MessageList messages= {chatHistory}/>
             </div>
-            <ChatFooter />
+            <ChatFooter setChatHistory={setChatHistory} />
         </div>
     )
 }

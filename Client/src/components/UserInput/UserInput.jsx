@@ -1,24 +1,50 @@
 import { useRef } from "react";
 import "./UserInput.css";
+import ollamaCall  from "../../services/aiService.js";
 
-const UserInput = ({ setChatHistory }) => {
+const UserInput = ({ chatHistory, setChatHistory }) => {
 
     const inputRef = useRef();
 
-    const handleFormSubmit = (e) => {
+    const updateHistory = (text) => {
+        setChatHistory((prev) => [...prev
+                                        .filter(msg => msg.text !== "Thinking..."), 
+                                    {role:"bot", text: text}]
+        );
+    }
+
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         const userMessage = inputRef.current.value.trim();
-        
-        if(!userMessage) return;
-        console.log(userMessage);
-        
-        inputRef.current.value="";
 
-        // Update chat history with userMessage
-        setChatHistory((history) => [...history, { sender:"user", text: userMessage }]);
+        if (!userMessage) return;
+        inputRef.current.value = "";
 
-        // Add "Thinking..." place holder for model's response
-        setTimeout(() => setChatHistory((history) => [...history, {sender:"bot", text: "Thinking..."}]), 600)
+        const messageList = [...chatHistory, { role: "user", text: userMessage }];
+
+        setChatHistory((history) => [
+            ...history,
+            { role: "user", text: userMessage },
+            { role: "bot", text: "Thinking..." }
+        ]);
+
+        try {
+            const ollamaMessage = [
+                ...chatHistory.map((msg) => ({
+                    role: msg.role === "bot" ? "assistant" : "user",
+                    content: msg.text
+                })), 
+                { role: "user", content: userMessage}
+            ]
+            console.log(ollamaMessage);
+            const botResponse = await ollamaCall(ollamaMessage);
+            updateHistory(botResponse.message.content);
+            console.log(botResponse.message.content);
+            
+        } catch (error) {
+            console.error("Ollama call failed:", error);
+            updateHistory("Sorry, I couldn't get a response. Please try again.");
+        }
     }
 
     return (

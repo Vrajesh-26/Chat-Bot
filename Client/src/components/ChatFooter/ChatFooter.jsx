@@ -1,11 +1,11 @@
 import UserInput from "../UserInput/UserInput";
 import "./ChatFooter.css";
 
-const ChatFooter = ({ setChatHistory }) => {
+const ChatFooter = ({ chatHistory, setChatHistory }) => {
 
     return (
         <div className="chat-footer">
-            <UserInput setChatHistory={setChatHistory} />
+            <UserInput chatHistory={chatHistory} setChatHistory={setChatHistory} />
         </div>
     )
 }

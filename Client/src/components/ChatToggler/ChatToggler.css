@@ -1,0 +1,39 @@
+#chatbot-toggler{
+    position: fixed;
+    bottom: 30px;
+    right: 35px;
+    border: none;
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #6D4FC2;
+    z-index: 1001; /* Keep it above the chat window */
+    transition: all 0.2s ease;
+}
+
+#chatbot-toggler span{
+    position: absolute;
+    color: #fff;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+/* Default state: Hide the close icon */
+#chatbot-toggler .close-cross {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+/* Active state: Hide comment icon, show close icon */
+.show-chatbot #chatbot-toggler .cmt-icon {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.show-chatbot #chatbot-toggler .close-cross {
+    opacity: 1;
+    transform: rotate(0deg);
+}

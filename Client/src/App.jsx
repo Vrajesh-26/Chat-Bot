@@ -1,5 +1,4 @@
 import { BrowserRouter, useLocation, Route, Routes } from "react-router-dom";
-import ChatLauncher from "./components/ChatLauncher/ChatLauncher";
 import ChatWindow from "./components/ChatWindow/ChatWindow";
 import Chat from "./pages/Chat";
 

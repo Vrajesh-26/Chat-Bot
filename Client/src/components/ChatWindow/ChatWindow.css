@@ -1,12 +1,32 @@
 .chat-window{
+    /* Pin the window to the bottom right */
+    position: fixed;
+    bottom: 90px;
+    right: 35px;
+    z-index: 1000;
+
     display: flex;
     flex-direction: column; 
     width: 420px;
     overflow: hidden;
     background: #fff;
     box-shadow: 0 0 128px 0 rgba(0, 0, 0, 0.1), 
-    0 32px 64px -48px rgba(0, 0, 0, 0.5);
+                0 32px 64px -48px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
+
+    /* Hide it by default with a smooth animation */
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+    transform-origin: bottom right;
+    transition: all 0.2s ease;
+}
+
+/* When show chat = true */
+.show-chatbot .chat-window {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
 }
 
 .chat-window .message-body{

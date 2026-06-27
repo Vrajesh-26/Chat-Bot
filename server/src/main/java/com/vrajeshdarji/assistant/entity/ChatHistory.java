@@ -1,7 +1,7 @@
 package com.vrajeshdarji.assistant.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.vrajeshdarji.assistant.model.message;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,10 +17,13 @@ import java.util.List;
 @AllArgsConstructor
 public class ChatHistory {
 
-    private List<Conversation> conversations;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private static class Conversation {
-        private String modelMessage;
-        private String senderMessage;
-    }
+    @OneToOne
+    @JoinColumn(name = "chat_id", referencedColumnName = "id")
+    private OllamaChat ollamaChat;
+    @ElementCollection
+    private List<message> messages;
 }

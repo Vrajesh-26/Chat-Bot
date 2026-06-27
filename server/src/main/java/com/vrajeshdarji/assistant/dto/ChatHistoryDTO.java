@@ -1,16 +1,15 @@
 package com.vrajeshdarji.assistant.dto;
 
-import com.vrajeshdarji.assistant.entity.ChatHistory;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.vrajeshdarji.assistant.model.message;
+import lombok.*;
 
 import java.util.List;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class ChatHistoryDTO {
-
-    private List<ChatHistory> chatHistory;
+    private List<message> messages;
 }

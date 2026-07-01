@@ -1,26 +1,22 @@
-package com.vrajeshdarji.assistant.io;
+package com.vrajeshdarji.assistant.dto;
 
-import com.vrajeshdarji.assistant.entity.ChatHistory;
 import com.vrajeshdarji.assistant.entity.MessageRole;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatResponse {
+public class ChatMessageResponse {
 
-    private UUID chatId;
-
+    private String messageId;
     private MessageRole role;
-
     private String content;
-
     private LocalDateTime timestamp;
 
-    private ChatHistory chatHistory;
 }

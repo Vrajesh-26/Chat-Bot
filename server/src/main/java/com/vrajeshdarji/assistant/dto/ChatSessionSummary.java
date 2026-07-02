@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChatSessionSummaryDTO {
+public class ChatSessionSummary {
 
     private String sessionId;
     private String title;

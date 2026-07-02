@@ -11,7 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ChatMessageRequest {
 
-    private String sessionId;
+    private String messageId;
 
     private String content;
 
